@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # ---
 # jupyter:
 #   jupytext:
@@ -6,9 +5,9 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.11.1
+#       jupytext_version: 1.15.0
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 # ---
@@ -61,7 +60,7 @@ import multiprocessing
 
 start = time.time()
 
-# +
+# + jupyter={"outputs_hidden": true}
 #############################
 # Linear Production Function
 #############################
@@ -594,7 +593,7 @@ VbL = np.insert(Vb, 0, cold, axis=1) #Fix value function for 1st generation of o
 Vb_mean = np.mean(Vb, axis=0)
 
 
-# +
+# + jupyter={"outputs_hidden": true}
 #############################
 # Cobb-Douglas Production Function
 #############################
@@ -1315,6 +1314,9 @@ aL=round(np.percentile(wdL, 50, axis=0)[0],3)*100
 wdbL = wdL[:,1:]
 wdbL=wdbL*100
 wdtL = np.transpose(wdbL)
+
+fig = plt.figure(figsize=(6, 4))
+ax = fig.add_subplot(111)
 plt.xticks([0,1,2,3,4])
 plt.plot(wdtL)
 plt.plot(0, aL, 'o', color='black')
@@ -1331,6 +1333,9 @@ plt.show()
 wdbL = wdL[:,1:]
 wdbL=wdbL*100
 wdtL = np.transpose(wdbL)
+
+fig = plt.figure(figsize=(6, 4))
+ax = fig.add_subplot(111)
 plt.xticks([0,1,2,3,4])
 plt.plot(wdtL)
 plt.suptitle('Figure 5bis - Change in Welfare by Generation')
@@ -1347,6 +1352,9 @@ aSIbL = aSIL[:,2:]
 aSIbL = np.insert(aSIbL, 0, aS0L, axis=1)
 aSIbL=aSIbL*100
 aSItL=aSIbL.transpose()
+
+fig = plt.figure(figsize=(6, 4))
+ax = fig.add_subplot(111)
 plt.xticks([0,1,2,3,4,5])
 plt.plot(aSItL)
 plt.suptitle('Figure 6 - Debt (Share Savings)')
@@ -1373,6 +1381,9 @@ aCD=round(np.percentile(wdCD, 50, axis=0)[0],3)*100
 wdbCD = wdCD[:,1:]
 wdbCD=wdbCD*100
 wdtCD = np.transpose(wdbCD)
+
+fig = plt.figure(figsize=(6, 4))
+ax = fig.add_subplot(111)
 plt.xticks([0,1,2,3,4])
 plt.plot(wdtCD)
 plt.plot(0, aCD, 'o', color='black')
@@ -1390,6 +1401,9 @@ aSIbCD = aSICD[:,2:]
 aSIbCD = np.insert(aSIbCD, 0, aS0CD, axis=1)
 aSIbCD=aSIbCD*100
 aSItCD=aSIbCD.transpose()
+
+fig = plt.figure(figsize=(6, 4))
+ax = fig.add_subplot(111)
 plt.xticks([0,1,2,3,4,5])
 plt.plot(aSItCD)
 plt.suptitle('Figure 8 - Debt (Share Savings)')
