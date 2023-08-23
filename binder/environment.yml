@@ -1,3 +1,4 @@
+name: BlanchardPA2019
 channels:
   - conda-forge
   - defaults
@@ -7,5 +8,6 @@ dependencies:
   - scipy=1.5.3
   - matplotlib=3.3.4
   - joblib=1.0.0
-  - jupytext=1.15.0
+  - nbclient=0.7.0
+  - ipykernel=6.16.2
 
