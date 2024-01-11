@@ -1,6 +1,4 @@
 #!/bin/bash
 # BlanchardPA2019 reproduce
 
-python -m pip install -r binder/requirements.txt
-
-python do_all.py
+jupyter execute Code/BlanchardPA2019.ipynb

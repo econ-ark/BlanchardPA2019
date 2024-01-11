@@ -6,9 +6,9 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.11.1
+#       jupytext_version: 1.13.6
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 # ---
@@ -21,25 +21,7 @@
 #
 # This notebook fully replicates the analysis of the stochastic overlapping generations (OLG) model developed by Blanchard in his presidential address during the AEA meetings 2019. It takes about 3 minutes to run all the simulations in the notebook.
 
-# +
-from IPython.display import HTML
-
-HTML('''<script>
-code_show=true; 
-function code_toggle() {
- if (code_show){
- $('div.input').hide();
- } else {
- $('div.input').show();
- }
- code_show = !code_show
-} 
-$( document ).ready(code_toggle);
-</script>
-<form action="javascript:code_toggle()"><input type="submit" value="Show/Hide Code"></form>''')
-
-
-# +
+# + tags=[]
 #############################
 # Some initial setup
 #############################
@@ -53,6 +35,7 @@ from scipy import optimize,arange
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 # %matplotlib inline
+from pathlib import Path
 from joblib import Parallel, delayed
 from scipy.stats import lognorm
 import random 
@@ -1200,6 +1183,9 @@ Vb_mean = np.mean(Vb, axis=0)
 #  
 
 # +
+figure_dir = Path('../Figures')
+figure_dir.mkdir(exist_ok=True)
+
 #############################
 # Plot All Results Welfare
 #############################
@@ -1213,7 +1199,7 @@ cbar=plt.colorbar(pnt3d)
 cbar.set_label("Change in Welfare")
 plt.suptitle('Figure 1 - Fixed transfer equal to 5% ISS')
 plt.title('Linear Production Function')
-plt.savefig('Fig1.png')
+plt.savefig(figure_dir / 'Fig1.png')
 plt.show()
 
 fig = plt.figure(figsize=(6, 4))
@@ -1225,7 +1211,7 @@ cbar=plt.colorbar(pnt3d)
 cbar.set_label("Change in Welfare")
 plt.suptitle('Figure 2 - Fixed transfer equal to 20% ISS')
 plt.title('Linear Production Function')
-plt.savefig('Fig2.png')
+plt.savefig(figure_dir / 'Fig2.png')
 plt.show()
 # -
 
@@ -1252,7 +1238,7 @@ cbar=plt.colorbar(pnt3d)
 cbar.set_label("Change in Welfare")
 plt.suptitle('Figure 3 - Fixed transfer equal to 5% ISS')
 plt.title('Cobb-Douglas Production Function')
-plt.savefig('Fig3.png')
+plt.savefig(figure_dir / 'Fig3.png')
 plt.show()
 
 fig = plt.figure(figsize=(6, 4))
@@ -1264,7 +1250,7 @@ cbar=plt.colorbar(pnt3d)
 cbar.set_label("Change in Welfare")
 plt.suptitle('Figure 4 - Fixed transfer equal to 20% ISS')
 plt.title('Cobb-Douglas Production Function')
-plt.savefig('Fig4.png')
+plt.savefig(figure_dir / 'Fig4.png')
 plt.show()
 # -
 
@@ -1315,12 +1301,15 @@ aL=round(np.percentile(wdL, 50, axis=0)[0],3)*100
 wdbL = wdL[:,1:]
 wdbL=wdbL*100
 wdtL = np.transpose(wdbL)
+
+fig = plt.figure(figsize=(6, 4))
+ax = fig.add_subplot(111)
 plt.xticks([0,1,2,3,4])
 plt.plot(wdtL)
 plt.plot(0, aL, 'o', color='black')
 plt.suptitle('Figure 5 - Change in Welfare by Generation')
 plt.title('Linear Production Function')
-plt.savefig('Fig5.png')
+plt.savefig(figure_dir / 'Fig5.png')
 plt.show()
 
 
@@ -1331,11 +1320,14 @@ plt.show()
 wdbL = wdL[:,1:]
 wdbL=wdbL*100
 wdtL = np.transpose(wdbL)
+
+fig = plt.figure(figsize=(6, 4))
+ax = fig.add_subplot(111)
 plt.xticks([0,1,2,3,4])
 plt.plot(wdtL)
 plt.suptitle('Figure 5bis - Change in Welfare by Generation')
 plt.title('Linear Production Function')
-plt.savefig('Fig5bis.png')
+plt.savefig(figure_dir / 'Fig5bis.png')
 plt.show()
 
 #############################
@@ -1347,11 +1339,14 @@ aSIbL = aSIL[:,2:]
 aSIbL = np.insert(aSIbL, 0, aS0L, axis=1)
 aSIbL=aSIbL*100
 aSItL=aSIbL.transpose()
+
+fig = plt.figure(figsize=(6, 4))
+ax = fig.add_subplot(111)
 plt.xticks([0,1,2,3,4,5])
 plt.plot(aSItL)
 plt.suptitle('Figure 6 - Debt (Share Savings)')
 plt.title('Linear Production Function')
-plt.savefig('Fig6.png')
+plt.savefig(figure_dir / 'Fig6.png')
 plt.show()
 
 # -
@@ -1373,12 +1368,15 @@ aCD=round(np.percentile(wdCD, 50, axis=0)[0],3)*100
 wdbCD = wdCD[:,1:]
 wdbCD=wdbCD*100
 wdtCD = np.transpose(wdbCD)
+
+fig = plt.figure(figsize=(6, 4))
+ax = fig.add_subplot(111)
 plt.xticks([0,1,2,3,4])
 plt.plot(wdtCD)
 plt.plot(0, aCD, 'o', color='black')
 plt.suptitle('Figure 7 - Change in Welfare by Generation')
 plt.title('Cobb-Douglas Production Function')
-plt.savefig('Fig7.png')
+plt.savefig(figure_dir / 'Fig7.png')
 plt.show()
 
 #############################
@@ -1390,11 +1388,14 @@ aSIbCD = aSICD[:,2:]
 aSIbCD = np.insert(aSIbCD, 0, aS0CD, axis=1)
 aSIbCD=aSIbCD*100
 aSItCD=aSIbCD.transpose()
+
+fig = plt.figure(figsize=(6, 4))
+ax = fig.add_subplot(111)
 plt.xticks([0,1,2,3,4,5])
 plt.plot(aSItCD)
 plt.suptitle('Figure 8 - Debt (Share Savings)')
 plt.title('Cobb-Douglas Production Function')
-plt.savefig('Fig8.png')
+plt.savefig(figure_dir / 'Fig8.png')
 plt.show()
 
 # -
